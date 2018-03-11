@@ -1,0 +1,38 @@
+#!/bin/sh
+##########################################
+#                                        #
+# Script by HydrexHD                     #
+#  (c) copyright 2018, HydrexHD          #
+#                                        #
+##########################################
+# /etc/init.d/Bootcount
+ ### INIT INFO START
+ # Provides:     Bootcount
+ # Required-Start:  $remote_fs $syslog
+ # Required-Stop:   $remote_fs $syslog
+ # Default-Start:   2 3 4 5
+ # Default-Stop:   0 1 6
+ # Short-Description: This script start bootcount at boot and count the number of reboots.
+ ### INIT INFO END
+ # Colors:
+ RED="\033[01;31m"
+ GREY="\033[00;37m"
+ GREEN="\033[01;32m"
+ # Commands:
+ case "$1" in
+  start)
+   echo "${GREEN}Starting Bootcount Script"
+   # Run Bootcount Script
+   /usr/local/bin/Bootcount.sh
+   ;;
+  stop)
+   echo "${RED}Stopping Bootcount Script"
+   # kill Bootcount Script
+   killall Bootcount
+   ;;
+  *)
+   echo "${RED}Usage: ${GREY}/etc/init.d/Bootcount {start|stop}"
+   exit 1
+   ;;
+ esac
+ exit 0
